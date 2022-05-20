@@ -2,6 +2,15 @@
   <span class="visually-hidden">Loading...</span>
 </div>
 
+<div class="mb-3">
+  <label for="filterText" class="form-label">Car Search</label>
+  <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="enter car">
+</div>
+
+<div *ngIf="filterText" class="alert alert-success">
+  {{filterText}} aradınız
+</div>
+
 <table *ngIf ="dataLoaded==true" class="table">
   <thead>
     <tr>
@@ -11,16 +20,18 @@
       <th>Name</th>
       <th>ModelYear</th>
       <th>DailyPrice</th>
+      <th>KDV'li Price</th>
       <th>Description</th>
     </tr>
   </thead>
-  <tr routerLink="/cars/car/{{car.id}}" *ngFor="let car of cars">
+  <tr routerLink="/cars/car/{{car.id}}" *ngFor="let car of cars  | filterPipe:filterText ">
     <td>{{car.id}}</td>
     <td>{{car.brandId}}</td>
     <td>{{car.colorId}}</td>
     <td>{{car.name}}</td>
     <td>{{car.modelYear}}</td>
     <td>{{car.dailyPrice}}</td>
+    <td>{{car.dailyPrice | vatAdded:10 | currency }}</td>
     <td>{{car.description}}</td>
   </tr>
 </table>
