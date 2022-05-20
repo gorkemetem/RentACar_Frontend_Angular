@@ -22,16 +22,21 @@
       <th>DailyPrice</th>
       <th>KDV'li Price</th>
       <th>Description</th>
+      <th></th>
     </tr>
   </thead>
-  <tr routerLink="/cars/car/{{car.id}}" *ngFor="let car of cars  | filterPipe:filterText ">
-    <td>{{car.id}}</td>
-    <td>{{car.brandId}}</td>
-    <td>{{car.colorId}}</td>
-    <td>{{car.name}}</td>
-    <td>{{car.modelYear}}</td>
-    <td>{{car.dailyPrice}}</td>
-    <td>{{car.dailyPrice | vatAdded:10 | currency }}</td>
-    <td>{{car.description}}</td>
-  </tr>
+  <tbody>
+    <tr routerLink="/cars/car/{{car.id}}" *ngFor="let car of cars  | filterPipe:filterText ">
+      <td>{{car.id}}</td>
+      <td>{{car.brandId}}</td>
+      <td>{{car.colorId}}</td>
+      <td>{{car.name}}</td>
+      <td>{{car.modelYear}}</td>
+      <td>{{car.dailyPrice}}</td>
+      <td>{{car.dailyPrice | vatAdded:10 | currency }}</td>
+      <td>{{car.description}}</td>
+      <th><button (click)="addToCart(car)" class="btn btn-success">Rent</button></th>
+    </tr>
+  </tbody>
+
 </table>
