@@ -2,16 +2,38 @@
   <span class="visually-hidden">Loading...</span>
 </div>
 
-<div class="mb-3">
-  <label for="filterText" class="form-label">Car Search</label>
-  <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="enter car">
+<div class="row">
+  <div class="mb-3" class="shadow p-3 mb-5 bg-body rounded" class="col-md-5">
+    <label for="filterText" class="form-label">Car Search</label>
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="enter car">
+  </div>
+
+
+  <div class="shadow p-3 mb-5 bg-body rounded" class="col-md-4">
+    <br>
+    <select class="form-select" aria-label="Default select example">
+      <option selected>Select Brand</option>
+      <option value="1">One</option>
+    </select>
+
+    <br>
+
+    <select class="form-select" aria-label="Default select example">
+      <option selected>Select Color</option>
+      <option value="1">One</option>
+    </select>
+
+    <br>
+
+    <button type="button" class="btn btn-success">Filtrele</button>
+
+    <br><br>
+  </div>
 </div>
 
-<div *ngIf="filterText" class="alert alert-success">
-  {{filterText}} aradınız
-</div>
 
-<table *ngIf ="dataLoaded==true" class="table">
+
+<table *ngIf ="dataLoaded==true" class="table table-success table-striped">
   <thead>
     <tr>
       <th>Id</th>
@@ -26,16 +48,16 @@
     </tr>
   </thead>
   <tbody>
-    <tr routerLink="/cars/car/{{car.id}}" *ngFor="let car of cars  | filterPipe:filterText ">
-      <td>{{car.id}}</td>
-      <td>{{car.brandId}}</td>
-      <td>{{car.colorId}}</td>
-      <td>{{car.name}}</td>
-      <td>{{car.modelYear}}</td>
-      <td>{{car.dailyPrice}}</td>
-      <td>{{car.dailyPrice | vatAdded:10 | currency }}</td>
-      <td>{{car.description}}</td>
-      <th><button (click)="addToCart(car)" class="btn btn-success">Rent</button></th>
+    <tr *ngFor="let car of cars  | filterPipe:filterText ">
+      <td routerLink="/cars/car/{{car.id}}" >{{car.id}}</td>
+      <td routerLink="/cars/car/{{car.id}}" >{{car.brandId}}</td>
+      <td routerLink="/cars/car/{{car.id}}" >{{car.colorId}}</td>
+      <td routerLink="/cars/car/{{car.id}}" >{{car.name}}</td>
+      <td routerLink="/cars/car/{{car.id}}" >{{car.modelYear}}</td>
+      <td routerLink="/cars/car/{{car.id}}" >{{car.dailyPrice}}</td>
+      <td routerLink="/cars/car/{{car.id}}" >{{car.dailyPrice | vatAdded:10 | currency }}</td>
+      <td routerLink="/cars/car/{{car.id}}" >{{car.description}}</td>
+      <td ><button (click)="addToCart(car)" class="btn btn-success">Rent</button></td>
     </tr>
   </tbody>
 
